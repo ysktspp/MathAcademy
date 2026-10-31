@@ -134,7 +134,20 @@ main{margin:0;padding:0}.panel{display:none!important;box-shadow:none;background
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="panel" id="tasks"><div class="head"><h2>Сюжетні задачі</h2></div><div id="tasksBox"></div></section>
+ <section class="panel" id="tasks">
+    <div class="head"><h2>Сюжетні задачі</h2></div>
+    <div class="pills" id="tasksPills" role="tablist" aria-label="Теми задач">
+      <button class="pill active" data-tc="sum3">Трьома сумами</button>
+      <button class="pill" data-tc="sum_diff">Сума і різниця</button>
+      <button class="pill" data-tc="inc_dec">Більше/менше на</button>
+      <button class="pill" data-tc="mult_div">Більше/менше у рази</button>
+      <button class="pill" data-tc="part_from_num">Частина від числа</button>
+      <button class="pill" data-tc="num_from_part">Число за частиною</button>
+      <button class="pill" data-tc="motion">🚗 Рух</button>
+      <button class="pill" data-tc="joint">🛠 Спільна дія</button>
+    </div>
+    <div id="tasksBox"></div>
+  </section>
 
   <section class="panel" id="units">
     <div class="head"><h2>Таблиця величин</h2></div>
@@ -162,11 +175,17 @@ mul:["3 428 · 6","7 105 · 8","24 318 · 4","45 080 · 7","60 204 · 9","542 ·
 div:["24 564 : 4","43 855 : 5","50 736 : 6","49 392 : 7","59 328 : 8","768 : 24","988 : 38","1 152 : 36","2 484 : 54","3 876 : 68","4 428 : 82","8 856 : 72","14 976 : 48","20 532 : 36","27 840 : 64","34 112 : 56","49 410 : 81","16 416 : 304","74 880 : 240","95 580 : 45"],
 combo:["45 000 - 12 450 : 3 + 8 140 · 5","(64 200 - 18 600) : 6 + 320 · 40","100 000 - (34 500 + 4 280 · 8) : 4","7 200 : 90 + 3 600 · 20 - 15 480","(50 000 - 14 200) : 40 + 7 890","80 400 - (15 200 : 4 + 6 340) · 7","250 · 60 - 48 000 : 80 + 3 420","(840 · 30 - 12 600) : 60 + 19 450","90 000 - (450 · 60 + 18 400 : 4)","36 000 : (120 - 40) + 4 800 · 15","(28 400 + 16 600) : 50 · 34","500 000 - 64 000 : 80 · 450","(92 000 - 36 800) : 8 + 450 · 30","72 000 : 60 + (80 000 - 24 500) : 5","12 400 · 5 - (48 000 : 60 + 19 500)","(300 000 - 180 000) : 400 + 8 950","63 000 : 70 · 40 - (18 400 + 6 600)","45 000 + (32 400 - 18 000) : 90 · 70","(10 000 - 4 560 : 4) + 120 · 50","85 000 - (12 000 · 4 - 36 000 : 6)"],
 eq:["x + 24 560 = 60 000","x - 18 450 = 34 890","75 000 - x = 28 340","x · 40 = 24 800","x : 30 = 1 500","36 000 : x = 90","(x + 1 500) - 800 = 4 200","(x - 450) + 1 200 = 3 500","800 - (x + 120) = 450","x · 6 - 1 200 = 4 800","x : 8 + 350 = 750","5 400 : x + 180 = 240","(x + 240) · 4 = 1 600","(x - 180) : 5 = 120","720 : (x - 15) = 24","x · 30 = 15 000 - 6 000","x : 40 = 320 + 180","45 000 - x = 120 · 80","x + 3 400 = 48 000 : 6","64 000 : x = 400 : 5"]};
-const TASKS=[
-["Задача 1: Зустрічний рух","Із двох міст, відстань між якими 480 км, назустріч один одному виїхали два автомобілі. Швидкість першого — 70 км/год, а другого — 50 км/год. Через скільки годин вони зустрінуться?","<strong>План:</strong><br>1) Швидкість зближення: 70 + 50 = 120 (км/год).<br>2) Час: 480 : 120 = 4 (год).<br><strong>Відповідь:</strong> через 4 години."],
-["Задача 2: Спільна робота","Один майстер виготовляє 48 деталей за 6 годин, а другий — за 8 годин. За скільки годин вони виготовлять 70 деталей, працюючи разом?","<strong>План:</strong><br>1) Продуктивність 1-го: 48 : 6 = 8 (дет./год).<br>2) Продуктивність 2-го: 48 : 8 = 6 (дет./год).<br>3) Разом: 8 + 6 = 14 (дет./год).<br>4) Час: 70 : 14 = 5 (год).<br><strong>Відповідь:</strong> за 5 годин."],
-["Задача 3: Знаходження частини від числа","У саду зібрали 720 кг яблук. 3/8 усіх яблук розклали в ящики, а решту віддали на сік. Скільки кілограмів яблук віддали на сік?","<strong>План:</strong><br>1) Яблука в ящиках: 720 : 8 · 3 = 270 (кг).<br>2) Яблука на сік: 720 - 270 = 450 (кг).<br><strong>Відповідь:</strong> 450 кг."]];
-const UNITS=["5 км 240 м = ... м","7 ц 35 кг = ... кг","4 доби 6 год = ... год","3400 кг = ... ц ... кг","2 год 15 хв = ... хв","8 м 4 см = ... см"];
+const TASKS={
+  sum3:[["Задача 1: Знаходження трьох чисел за їхніми сумами","Сума трьох чисел 850. Сума першого і другого — 560, а другого і третього — 440. Знайди кожне число.","<strong>План:</strong><br>1) Третє число: 850 - 560 = 290.<br>2) Перше число: 850 - 440 = 410.<br>3) Друге число: 560 - 410 = 150.<br><strong>Відповідь:</strong> 410, 150, 290."]],
+  sum_diff:[["Задача 1: Знаходження чисел за сумою і різницею","У двох кошиках разом 120 яблук. У першому кошику на 30 яблук більше, ніж у другому. Скільки яблук у кожному кошику?","<strong>План:</strong><br>1) Віднімаємо різницю: 120 - 30 = 90 (яблук) — було б порівну.<br>2) У другому кошику: 90 : 2 = 45 (яблук).<br>3) У першому кошику: 45 + 30 = 75 (яблук).<br><strong>Відповідь:</strong> 75 і 45 яблук."]],
+  inc_dec:[["Задача 1: Збільшення/зменшення на кілька одиниць","У першому ящику 45 кг печива, у другому — на 15 кг менше, ніж у першому, а в третьому — на 20 кг більше, ніж у другому. Скільки всього кілограмів печива у трьох ящиках?","<strong>План:</strong><br>1) У другому ящику: 45 - 15 = 30 (кг).<br>2) У третьому ящику: 30 + 20 = 50 (кг).<br>3) Всього: 45 + 30 + 50 = 125 (кг).<br><strong>Відповідь:</strong> 125 кг."]],
+  mult_div:[["Задача 1: Збільшення/зменшення у кілька разів","У саду росте 12 яблунь, груш — у 3 рази більше, ніж яблунь, а слив — у 2 рази менше, ніж груш. Скільки всього дерев росте в саду?","<strong>План:</strong><br>1) Груш: 12 · 3 = 36 (дерев).<br>2) Слив: 36 : 2 = 18 (дерев).<br>3) Всього: 12 + 36 + 18 = 66 (дерев).<br><strong>Відповідь:</strong> 66 дерев."]],
+  part_from_num:[["Задача 1: Знаходження частини від числа","У книжці 240 сторінок. Хлопчик прочитав 3/8 усіх сторінок. Скільки сторінок йому залишилося прочитати?","<strong>План:</strong><br>1) Прочитав: 240 : 8 · 3 = 90 (стор.).<br>2) Залишилося: 240 - 90 = 150 (стор.).<br><strong>Відповідь:</strong> 150 сторінок."]],
+  num_from_part:[["Задача 1: Знаходження числа за його частиною","Дівчинка витратила 45 грн, що становить 3/5 усіх її грошей. Скільки грошей було в дівчинки спочатку?","<strong>План:</strong><br>1) Шукаємо ціле число: 45 : 3 · 5 = 75 (грн).<br><strong>Відповідь:</strong> 75 грн."]],
+  motion:[["Задача 1: Зустрічний рух","Із двох міст, відстань між якими 480 км, назустріч один одному виїхали два автомобілі. Швидкість першого — 70 км/год, а другого — 50 км/год. Через скільки годин вони зустрінуться?","<strong>План:</strong><br>1) Швидкість зближення: 70 + 50 = 120 (км/год).<br>2) Час: 480 : 120 = 4 (год).<br><strong>Відповідь:</strong> через 4 години."]],
+  joint:[["Задача 1: Спільна робота","Один майстер виготовляє 48 деталей за 6 годин, а другий — за 8 годин. За скільки годин вони виготовлять 70 деталей, працюючи разом?","<strong>План:</strong><br>1) Продуктивність 1-го: 48 : 6 = 8 (дет./год).<br>2) Продуктивність 2-го: 48 : 8 = 6 (дет./год).<br>3) Разом: 8 + 6 = 14 (дет./год).<br>4) Час: 70 : 14 = 5 (год).<br><strong>Відповідь:</strong> за 5 годин."]]
+};
+  const UNITS=["5 км 240 м = ... м","7 ц 35 кг = ... кг","4 доби 6 год = ... год","3400 кг = ... ц ... кг","2 год 15 хв = ... хв","8 м 4 см = ... см"];
 const LOGIC=[
 ["🧩 Головоломка з розпилюванням","Колоду завдовжки 6 метрів потрібно розпиляти на метрові цурпалки. Скільки розпилів потрібно зробити?","<strong>Відповідь:</strong> 5 розпилів (останній розпил дає одразу дві останні частини)."],
 ["🧩 Числова послідовність","Знайди закономірність і продовж ряд на два числа: 2, 5, 11, 23, ...","<strong>Відповідь:</strong> 47, 95 (кожне наступне число множиться на 2 і додається 1)."],
@@ -181,7 +200,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){docume
 
 /* ---- ключі та підрахунки ---- */
 const kE=(c,i)=>"e|"+c+"|"+EXPR[c][i], kT=i=>"t|"+i, kU=i=>"u|"+i, kL=i=>"l|"+i;
-const groups={tasks:TASKS.map((_,i)=>kT(i)),units:UNITS.map((_,i)=>kU(i)),logic:LOGIC.map((_,i)=>kL(i))};
+const groups={tasks:Object.values(TASKS).flat().map((_,i)=>kT(i)),units:UNITS.map((_,i)=>kU(i)),logic:LOGIC.map((_,i)=>kL(i))};
 CATS.forEach(([c])=>groups[c]=EXPR[c].map((_,i)=>kE(c,i)));
 groups.expr=CATS.flatMap(([c])=>groups[c]);
 const all=groups.expr.concat(groups.tasks,groups.units,groups.logic);
@@ -190,22 +209,11 @@ const $=id=>document.getElementById(id);
 let cat="add",filter="all";
 
 /* ---- відображення ---- */
-function btn(k,done,t){return `<button class="btn ok" data-k="${k}" aria-pressed="${done}" title="Натисни ще раз, щоб скасувати">${done?"✓ Виконано":t}</button>`}
-function renderExpr(){
-  const c=CATS.find(x=>x[0]===cat);
-  $("catTitle").textContent=c[1]+" "+c[2];
-  $("grid").innerHTML=EXPR[cat].map((e,i)=>({e,i,k:kE(cat,i)})).filter(o=>filter==="all"||!st.done[o.k]).map(o=>`
-   <div class="item ${st.done[o.k]?"done":""}"><div class="row"><span class="num">${o.i+1}</span><span class="txt">${o.e}</span><span class="pb"></span></div>${btn(o.k,!!st.done[o.k],"Позначити виконаним")}</div>`).join("")||`<p>🎉 Усе виконано! Обери іншу тему.</p>`;
-  document.querySelectorAll(".pill").forEach(p=>p.classList.toggle("active",p.dataset.c===cat));
+let taskCat="sum3";
+function renderTasksUI(){
+  document.querySelectorAll("#tasksPills .pill").forEach(p=>p.classList.toggle("active",p.dataset.tc===taskCat));
+  renderCards("tasksBox",TASKS[taskCat],(i)=>kT(Object.values(TASKS).flat().indexOf(TASKS[taskCat][i])),"Позначити розв’язаним");
 }
-function renderPills(){$("pills").innerHTML=CATS.map(([c,ic,n])=>`<button class="pill" data-c="${c}" role="tab">${ic} ${n}<em id="p-${c}"></em></button>`).join("")}
-function renderCards(box,list,prefix,doneLabel){
-  $(box).innerHTML=list.map((t,i)=>{const k=prefix(i),d=!!st.done[k];return `<div class="cardx ${d?"done":""}"><h3>${t[0]}</h3><p>${t[1]}</p>
-  <div class="acts"><button class="btn ghost" data-h="${box}${i}">💡 ${box==="logicBox"?"Показати відповідь":"Підказка та розв’язок"}</button>${btn(k,d,doneLabel)}</div>
-  <div class="hint" id="${box}${i}">${t[2]}</div></div>`}).join("");
-}
-function renderUnits(){$("unitsBox").innerHTML=UNITS.map((u,i)=>{const k=kU(i),d=!!st.done[k];return `<div class="item ${d?"done":""}"><div class="row"><span class="num">${i+1}</span><span class="txt">${u}</span><span class="pb"></span></div>${btn(k,d,"Позначити виконаним")}</div>`}).join("")}
-
 function update(){
   const done=all.filter(k=>st.done[k]).length,xp=done*10,lv=Math.floor(xp/100)+1;
   $("lvl").textContent="⭐ Рівень "+lv+" · "+RANKS[Math.min(lv-1,RANKS.length-1)];
@@ -222,6 +230,7 @@ let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("sho
 /* ---- події ---- */
 document.addEventListener("click",e=>{
   const t=e.target.closest(".tab");
+  const pt=e.target.closest("#tasksPills .pill");if(pt){taskCat=pt.dataset.tc;renderTasksUI();return}
   if(t){document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===t));
     document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===t.dataset.tab));
     if(t.dataset.tab==="expr")renderExpr();return}
@@ -249,7 +258,7 @@ $("reset").onclick=()=>{if(confirm("Точно видалити весь про�
 function init(){
   $("guide").style.display=st.guideHidden?"none":"block";
   renderExpr();
-  renderCards("tasksBox",TASKS,kT,"Позначити розв’язаним");
+ renderTasksUI();
   renderUnits();
   renderCards("logicBox",LOGIC,kL,"Позначити виконаним");
   update();
