@@ -3,369 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Математичний тренажер — 4 клас</title>
+<title>Космічна місія Тимка — математика 4 клас</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;900&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f8f9fa; /* Світлий фон */
-  --panel:#ffffff; /* Білі панелі */
-  --panel2:#f0f4f8; /* Світло-сірі/блакитні картки */
-  --edge:#e2e8f0; /* Світлі рамки */
-  --text:#1e293b; /* Темний текст для контрасту */
-  --muted:#64748b; /* Приглушений текст */
-  --blue:#38bdf8; /* Світло-блакитний */
-  --blue-d:#0284c7; /* Темніший блакитний для тіней */
-  --green:#4ade80; /* Світло-зелений */
-  --green-d:#16a34a; /* Темніший зелений */
-  --yellow:#fde047; /* Світло-жовтий */
-  --purple:#c084fc; /* Світло-фіолетовий */
-  --purple-d:#9333ea; /* Темніший фіолетовий */
-  --r:12px;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:Rubik,system-ui,"Segoe UI",Arial,sans-serif}
-body{background:var(--bg);color:var(--text);line-height:1.45;min-height:100vh;
-background-image:radial-gradient(circle at 14px 14px,rgba(0,0,0,.03) 5px,transparent 6px);background-size:28px 28px}
-button{cursor:pointer;color:inherit;font-weight:700}
-:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.top{background:var(--panel);border-bottom:4px solid var(--edge);padding:.75rem 1rem}
-.top-in{max-width:1100px;margin:auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:.75rem}
-.logo{width:46px;height:46px;border-radius:10px;background:var(--blue);box-shadow:0 4px 0 var(--blue-d);display:grid;place-items:center;font-size:1.6rem;font-weight:900;transform:rotate(-6deg);color:white;}
-.brand h1{font-size:1.35rem;font-weight:900;line-height:1.1}
-.brand p{font-size:.85rem;color:var(--muted)}
-.player{background:var(--panel2);border-radius:var(--r);padding:.5rem .9rem;min-width:240px;flex:0 1 300px; border:1px solid var(--edge)}
-.player b{font-size:.95rem}
-.bar{height:14px;background:var(--edge);border-radius:8px;overflow:hidden;margin-top:.3rem}
-.bar i{display:block;height:100%;width:0;background:var(--green);border-radius:8px;transition:width .4s}
-.small{font-size:.8rem;color:var(--muted)}
-main{max-width:1100px;margin:1.25rem auto 3rem;padding:0 1rem}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.25rem}
-.tab{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r);padding:.7rem .3rem;box-shadow:0 5px 0 var(--edge);font-size:.95rem;display:flex;flex-direction:column;align-items:center;gap:.1rem;transition:transform .08s,box-shadow .08s}
-.tab span{font-size:1.6rem;line-height:1.1}
-.tab.active{background:var(--blue);box-shadow:0 5px 0 var(--blue-d);color:white;border:none}
-.tab:active{transform:translateY(4px);box-shadow:0 1px 0 var(--edge)}
-.tab small{font-size:.75rem;font-weight:500;opacity:.85}
-.panel{display:none;background:var(--panel);border-radius:var(--r);padding:1.25rem;box-shadow:0 5px 0 var(--edge); border:1px solid var(--edge)}
-.panel.active{display:block}
-h2{font-size:1.5rem;font-weight:900}
-.head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem}
-.head .bar{width:220px}
-.guide{background:#eff6ff;border:2px solid var(--blue);border-radius:var(--r);padding:.9rem 1rem;margin-bottom:1rem}
-.guide ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.5rem;list-style:none;counter-reset:s;margin:.5rem 0 .7rem}
-.guide li{counter-increment:s;display:flex;gap:.6rem;align-items:center}
-.guide li::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:8px;background:var(--yellow);color:#222;font-weight:900;display:grid;place-items:center}
-.pills{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem .1rem .7rem;margin-bottom:.5rem}
-.pill{white-space:nowrap;background:var(--panel);border:1px solid var(--edge);border-radius:30px;padding:.55rem 1rem;box-shadow:0 3px 0 var(--edge);min-height:44px;color:var(--text)}
-.pill.active{background:var(--purple);box-shadow:0 3px 0 var(--purple-d);color:white;border:none}
-.pill em{font-style:normal;font-size:.8rem;background:rgba(0,0,0,.1);border-radius:10px;padding:.1rem .5rem;margin-left:.3rem;color:inherit}
-.pill.active em{background:rgba(0,0,0,.2)}
-.pill.full em{background:var(--green); color:white;}
-.tools{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
-.seg{display:flex;background:var(--panel2);border-radius:10px;padding:3px;border:1px solid var(--edge)}
-.seg button{border:0;background:none;padding:.45rem .9rem;border-radius:8px;font-size:.9rem;color:var(--muted)}
-.seg button.on{background:var(--panel);color:var(--text);box-shadow:0 2px 4px rgba(0,0,0,.05)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.9rem}
-.item{background:var(--panel);border-radius:var(--r);padding:.9rem;border-bottom:5px solid var(--edge);display:flex;flex-direction:column;gap:.7rem;border-left:6px solid transparent; border:1px solid var(--edge);border-bottom-width:5px;}
-.item.done{border-left-color:var(--green)}
-.item.done .txt{color:var(--muted)}
-.row{display:flex;gap:.7rem;align-items:flex-start}
-.num{flex:none;min-width:34px;height:34px;border-radius:8px;background:var(--panel2);display:grid;place-items:center;font-weight:800;font-size:.9rem;color:var(--text)}
-.txt{font-size:1.3rem;font-weight:700;overflow-wrap:anywhere}
-.btn{border:0;border-radius:10px;padding:.7rem 1rem;font-size:1rem;background:var(--blue);box-shadow:0 5px 0 var(--blue-d);transition:transform .08s,box-shadow .08s;min-height:48px; color:white}
-.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--blue-d)}
-.btn.ok{background:var(--panel);box-shadow:0 5px 0 var(--edge);border:2px dashed #94a3b8;color:var(--muted)}
-.item.done .btn.ok, .cardx.done .btn.ok{background:var(--green);box-shadow:0 5px 0 var(--green-d);border:0;color:#fff}
-.btn.ghost{background:var(--panel);box-shadow:0 5px 0 var(--edge); color:var(--text); border:1px solid var(--edge)}
-.cardx{background:var(--panel);border-radius:var(--r);padding:1.1rem;margin-bottom:1rem;border-bottom:5px solid var(--edge);border-left:6px solid var(--yellow); border-top:1px solid var(--edge); border-right:1px solid var(--edge);}
-.cardx.done{border-left-color:var(--green)}
-.cardx h3{font-size:1.1rem;margin-bottom:.3rem;color:#ca8a04}
-.cardx p{font-size:1.05rem}
-.acts{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
-.hint{display:none;margin-top:.8rem;padding:.8rem;background:#fefce8;border-radius:10px;border:2px solid var(--yellow)}
-.hint.open{display:block}
-.u{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;margin-bottom:1.5rem}
-.u div{background:var(--panel);border-radius:var(--r);padding:.9rem;border-bottom:5px solid var(--edge); border:1px solid var(--edge)}
-.u b{display:block;color:var(--blue-d);margin-bottom:.3rem}
-.toast{position:fixed;left:50%;bottom:1.2rem;transform:translate(-50%,200%);background:var(--green);color:#fff;font-weight:800;padding:.8rem 1.3rem;border-radius:12px;box-shadow:0 5px 0 var(--green-d);transition:transform .25s;z-index:9;max-width:92vw;text-align:center}
+:root{--bg:#0d1033;--pn:#1a1f5c;--pn2:#262c7a;--ed:#3a42a8;--tx:#f1f4ff;--mu:#a9b2ee;--cy:#4de1ff;--gr:#5df2a0;--ye:#ffd84d;--pk:#ff7ad9;--rd:#ff6b7a}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Nunito,system-ui,Arial,sans-serif}
+body{background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.4;
+background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 120px,#cfe,transparent),radial-gradient(2px 2px at 160px 60px,#ffd84d,transparent),radial-gradient(circle at 80% 0,#3b2a8f55,transparent 50%);background-size:200px 160px,200px 160px,240px 200px,100% 100%;background-attachment:fixed}
+button{cursor:pointer;font:inherit;font-weight:800;color:inherit}
+:focus-visible{outline:3px solid var(--ye);outline-offset:2px}
+h1,h2,.big,.rk{font-family:Rubik,sans-serif}
+.top{display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;max-width:1000px;margin:auto;padding:1rem}
+.brand{display:flex;gap:.7rem;align-items:center}.brand i{font-style:normal;font-size:2.4rem}
+.brand h1{font-size:1.3rem;font-weight:900}.brand p{color:var(--mu);font-size:.85rem}
+.pl{background:var(--pn);border:2px solid var(--ed);border-radius:16px;padding:.6rem 1rem;flex:0 1 310px;min-width:240px}
+.rk{font-weight:700}.bar{height:14px;background:#0d1033;border-radius:8px;overflow:hidden;margin:.3rem 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--gr));width:0;transition:width .4s}
+.sm{font-size:.8rem;color:var(--mu)}
+main{max-width:1000px;margin:auto;padding:0 1rem 3rem}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem}
+.tab{background:var(--pn);border:2px solid var(--ed);border-radius:14px;padding:.6rem .2rem;font-size:.95rem;display:flex;flex-direction:column;align-items:center}
+.tab span{font-size:1.5rem}.tab small{color:var(--mu);font-weight:600}
+.tab.on{background:var(--cy);color:#06113a;border-color:var(--cy)}.tab.on small{color:#06113a}
+.pills,.lvs{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem 0 .6rem}
+.pill{white-space:nowrap;background:var(--pn);border:2px solid var(--ed);border-radius:30px;padding:.5rem .9rem;min-height:44px}
+.pill.on{background:var(--pk);border-color:var(--pk);color:#2a0a25}
+.pill em{font-style:normal;font-size:.78rem;opacity:.85;margin-left:.3rem}
+.lv{flex:1;min-width:120px;background:var(--pn2);border:2px solid var(--ed);border-radius:14px;padding:.5rem;text-align:center;min-height:56px}
+.lv.on{border-color:var(--ye);background:#3a3590}.lv.ok{border-color:var(--gr)}
+.lv small{display:block;color:var(--mu);font-weight:600}
+.stage{background:var(--pn);border:2px solid var(--ed);border-radius:20px;padding:1.2rem;display:grid;grid-template-columns:150px 1fr;gap:1.2rem;align-items:start}
+.ty{text-align:center}.ty b{display:block;font-size:5.5rem;line-height:1;animation:fl 3s ease-in-out infinite}
+.ty span{font-family:Rubik;font-weight:700;color:var(--gr)}
+@keyframes fl{50%{transform:translateY(-10px) rotate(4deg)}}
+.say{background:#fff;color:#1b1f4d;border-radius:16px;padding:.7rem 1rem;font-weight:800;position:relative;margin-bottom:1rem}
+.say::before{content:"";position:absolute;left:-10px;top:18px;border:10px solid transparent;border-right-color:#fff;border-left:0}
+.board{background:#0a0d2b;border:2px dashed var(--ed);border-radius:14px;padding:1rem;margin-bottom:1rem;overflow-x:auto}
+pre{font-family:"Courier New",monospace;font-size:2rem;font-weight:700;line-height:1.25;display:inline-block;color:var(--ye)}
+.dv{display:inline-flex;font-family:"Courier New",monospace;font-size:2rem;font-weight:700;color:var(--ye);align-items:flex-start}
+.dv span{padding:0 .6rem}.dv .d{border-left:3px solid var(--ye);border-bottom:3px solid var(--ye);margin-left:.3rem;margin-top:0}
+.ex{font-family:Rubik;font-size:1.7rem;font-weight:700;color:var(--ye);overflow-wrap:anywhere}
+.tx{font-size:1.2rem;font-weight:700}
+.row{display:flex;gap:.6rem;flex-wrap:wrap}
+input{flex:1;min-width:140px;font-size:1.6rem;font-family:Rubik;font-weight:700;padding:.5rem .8rem;border-radius:12px;border:3px solid var(--ed);background:#0a0d2b;color:var(--tx)}
+.b{border:0;border-radius:12px;padding:.7rem 1.1rem;min-height:48px;background:var(--gr);color:#04301a;box-shadow:0 4px 0 #229a5c}
+.b.g{background:var(--pn2);color:var(--tx);box-shadow:0 4px 0 #14185a}
+.b:active{transform:translateY(3px);box-shadow:none}
+.msg{margin-top:.8rem;font-weight:800;min-height:1.5rem}.msg.ok{color:var(--gr)}.msg.no{color:var(--rd)}
+.sol{display:none;margin-top:.8rem;background:#2b2a70;border-radius:12px;padding:.8rem}.sol.open{display:block}
+.shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.toast{position:fixed;left:50%;bottom:1.2rem;transform:translate(-50%,200%);background:var(--ye);color:#2a2000;font-weight:900;padding:.8rem 1.3rem;border-radius:14px;transition:transform .25s;z-index:9;text-align:center;max-width:92vw}
 .toast.show{transform:translate(-50%,0)}
-footer{text-align:center;color:var(--muted);font-size:.85rem;padding-bottom:2rem}
-footer button{background:none;border:0;color:var(--muted);text-decoration:underline;font-weight:500}
-.warn{background:#fee2e2; color:#991b1b;border-radius:10px;padding:.6rem 1rem;margin-bottom:1rem;display:none; border:1px solid #f87171}
-.pb{display:none}
-@media (max-width:520px){.tab{font-size:.85rem}.tab small{display:none}.player{flex:1 1 100%}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-@media print{
-body{background:#fff;color:#000}.top,.tabs,.pills,.tools,.guide,.btn,.acts,footer,.toast,.bar,.warn{display:none!important}
-main{margin:0;padding:0}.panel{display:none!important;box-shadow:none;background:none;padding:0; border:none}.panel.active{display:block!important}
-.item{background:none;border:1px dashed #999;color:#000;break-inside:avoid;flex-direction:row}.txt,.num{color:#000}.num{background:#eee}
-.grid{grid-template-columns:repeat(2,1fr)}.pb{display:block;width:22px;height:22px;border:2px solid #000;border-radius:4px;margin-left:auto;flex:none}
-.hint{display:none!important}.cardx{background:none;border:1px dashed #999;color:#000}.cardx h3{color:#000}.u div{background:none;border:1px solid #999}.u b{color:#000}}
+footer{text-align:center;padding:1rem}footer button{background:none;border:0;color:var(--mu);text-decoration:underline;font-weight:600}
+.warn{display:none;background:#5a1d2a;border-radius:10px;padding:.6rem 1rem;margin-bottom:1rem}
+@media(max-width:640px){.stage{grid-template-columns:1fr}.ty{display:flex;align-items:center;gap:.8rem;text-align:left}.ty b{font-size:3.5rem}.say::before{display:none}.tab small{display:none}pre,.dv{font-size:1.6rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header class="top"><div class="top-in">
-  <div class="brand"><div class="logo">∑</div><div><h1>Математичний тренажер</h1><p>4 клас</p></div></div>
-  <div class="player" aria-live="polite"><b id="lvl"></b><div class="bar"><i id="xpbar"></i></div><span class="small" id="xptxt"></span></div>
-</div></header>
-
+<header class="top">
+ <div class="brand"><i>🚀</i><div><h1>Космічна місія Тимка</h1><p>Математика · 4 клас</p></div></div>
+ <div class="pl" aria-live="polite"><div class="rk" id="rk"></div><div class="bar"><i id="xb"></i></div><div class="sm" id="xt"></div></div>
+</header>
 <main>
-  <div class="warn" id="warn">⚠️ Браузер не дозволяє зберігати прогрес. Він зникне, коли ти закриєш сторінку.</div>
-  <nav class="tabs" role="tablist" aria-label="Розділи">
-    <button class="tab active" role="tab" data-tab="expr"><span>🔢</span>Вирази<small id="c-expr"></small></button>
-    <button class="tab" role="tab" data-tab="tasks"><span>📘</span>Задачі<small id="c-tasks"></small></button>
-    <button class="tab" role="tab" data-tab="units"><span>⚖️</span>Величини<small id="c-units"></small></button>
-    <button class="tab" role="tab" data-tab="logic"><span>💡</span>Логіка<small id="c-logic"></small></button>
-  </nav>
-
-  <!-- 1. ВИРАЗИ -->
-  <section class="panel active" id="expr">
-    <div class="guide" id="guide">
-      <b>Як це працює</b>
-      <ol><li>Обери тему внизу</li><li>Розв’яжи вираз у зошиті</li><li>Натисни «Позначити виконаним»</li></ol>
-      <button class="btn" id="hideGuide">Зрозуміло</button>
-    </div>
-    <div class="head"><h2 id="catTitle"></h2><div><span class="small" id="catCount"></span><div class="bar"><i id="catBar"></i></div></div></div>
-    <div class="pills" id="pills" role="tablist" aria-label="Теми виразів"></div>
-    <div class="tools">
-      <div class="seg" id="filter"><button class="on" data-f="all">Усі</button><button data-f="todo">Ще не зроблені</button></div>
-      <button class="btn ghost" onclick="window.print()">🖨️ Роздрукувати</button>
-    </div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <!-- 2. ЗАДАЧІ -->
-  <section class="panel" id="tasks">
-    <div class="head">
-      <h2 id="taskCatTitle">Сюжетні задачі</h2>
-      <div><span class="small" id="taskCatCount"></span><div class="bar"><i id="taskCatBar"></i></div></div>
-    </div>
-    <div class="pills" id="taskPills" role="tablist" aria-label="Теми задач"></div>
-    <div id="tasksBox"></div>
-  </section>
-
-  <!-- 3. ВЕЛИЧИНИ -->
-  <section class="panel" id="units">
-    <div class="head"><h2>Таблиця величин</h2></div>
-    <div class="u">
-      <div><b>Довжина</b>1 км = 1000 м<br>1 м = 10 дм = 100 см<br>1 дм = 10 см<br>1 см = 10 мм</div>
-      <div><b>Маса</b>1 т = 10 ц = 1000 кг<br>1 ц = 100 кг<br>1 кг = 1000 г</div>
-      <div><b>Час</b>1 доба = 24 год<br>1 год = 60 хв<br>1 хв = 60 с</div>
-      <div><b>Вартість</b>1 грн = 100 коп.</div>
-    </div>
-    <h2 style="font-size:1.2rem;margin-bottom:.8rem">Експрес-вправи для зошита</h2>
-    <div class="grid" id="unitsBox"></div>
-  </section>
-
-  <!-- 4. ЛОГІКА -->
-  <section class="panel" id="logic"><div class="head"><h2>Логічні хвилинки</h2></div><div id="logicBox"></div></section>
+ <div class="warn" id="warn">⚠️ Браузер не зберігає прогрес. Він зникне після закриття сторінки.</div>
+ <nav class="tabs" id="tabs" aria-label="Розділи"></nav>
+ <div class="pills" id="pills"></div>
+ <div class="lvs" id="lvs"></div>
+ <section class="stage">
+  <div class="ty"><b>👽</b><span>Тимко</span></div>
+  <div>
+   <div class="say" id="say"></div>
+   <div class="board" id="board"></div>
+   <div class="row"><input id="inp" inputmode="decimal" autocomplete="off" aria-label="Твоя відповідь" placeholder="Відповідь"><button class="b" id="chk">Перевірити</button></div>
+   <div class="row" style="margin-top:.6rem"><button class="b g" id="hint">💡 Підказка</button><button class="b g" id="skip">⏭ Інше завдання</button></div>
+   <div class="msg" id="msg" role="status"></div>
+   <div class="sol" id="sol"></div>
+  </div>
+ </section>
 </main>
-<footer><button id="reset">Почати спочатку (скинути прогрес)</button></footer>
+<footer><button id="reset">Почати місію спочатку (скинути прогрес)</button></footer>
 <div class="toast" id="toast" role="status"></div>
-
 <script>
-const CATS=[
-  ["add","➕","Письмове додавання"],
-  ["sub","➖","Письмове віднімання"],
-  ["mul","✖️","Письмове множення"],
-  ["div","➗","Письмове ділення"],
-  ["combo","🧮","Комбіновані вирази"],
-  ["eq","❓","Рівняння"]
-];
+const $=id=>document.getElementById(id),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,P=a=>a[R(0,a.length-1)];
+const F=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"\u00a0");
+const SECT={
+expr:["🔢","Вирази",[["add","➕","Додавання"],["sub","➖","Віднімання"],["mul","✖️","Множення"],["div","➗","Ділення"],["combo","🧮","Вирази"],["eq","❓","Рівняння"]]],
+tasks:["📘","Задачі",[["sum3","🔢","Трьома сумами"],["sd","⚖️","Сума і різниця"],["id","➕","Більше/менше на"],["md","✖️","У рази"],["pn","🍰","Частина від числа"],["np","🧩","Число за частиною"],["mo","🚗","Рух"],["jo","🛠","Спільна дія"]]],
+units:["⚖️","Величини",[["u","⚖️","Величини"]]],
+logic:["💡","Логіка",[["l","💡","Логіка"]]]};
+const LVN=["🌍 Орбіта 1","🪐 Орбіта 2","🌌 Орбіта 3"],ULV=["Перетворення","Додавання","Віднімання"];
+const RANKS=["Космічний кадет","Пілот","Штурман","Капітан","Командор","Адмірал зірок","Легенда галактики"];
+const OK=["Супер! Космічна відповідь! 🌟","Точно в ціль! 🎯","Тимко в захваті! 👽","Ракета набирає швидкість! 🚀"];
+const NO=["Хм, перевір ще раз 🤔","Майже! Спробуй ще раз","Тимко вірить у тебе! 💪"];
 
-const EXPR={
-  add:["34 528 + 18 346","56 294 + 27 489","73 815 + 45 692","128 405 + 63 719","345 218 + 178 943","409 512 + 87 694","624 083 + 195 938","51 704 + 389 658","267 819 + 453 187","780 429 + 139 785","45 908 + 23 497","89 234 + 64 879","503 124 + 298 876","147 632 + 382 579","612 945 + 287 366","74 329 + 158 794","326 541 + 497 869","814 209 + 98 791","435 678 + 276 435","589 014 + 342 988"],
-  sub:["62 415 - 28 379","80 000 - 34 528","100 000 - 47 382","74 123 - 48 569","503 240 - 184 675","920 014 - 456 328","415 600 - 238 745","634 218 - 279 459","300 045 - 146 789","852 104 - 394 527","71 304 - 45 678","90 400 - 58 234","432 150 - 187 492","600 000 - 243 819","745 820 - 389 945","512 003 - 267 489","824 315 - 476 838","360 120 - 194 563","901 050 - 543 287","700 024 - 358 149"],
-  mul:["3 428 · 6","7 105 · 8","24 318 · 4","45 080 · 7","60 204 · 9","542 · 38","814 · 45","629 · 73","1 245 · 34","2 184 · 42","3 608 · 26","4 520 · 63","1 804 · 57","315 · 204","428 · 305","512 · 180","2 740 · 85","609 · 430","1 536 · 48","2 475 · 36"],
-  div:["24 564 : 4","43 855 : 5","50 736 : 6","49 392 : 7","59 328 : 8","768 : 24","988 : 38","1 152 : 36","2 484 : 54","3 876 : 68","4 428 : 82","8 856 : 72","14 976 : 48","20 532 : 36","27 840 : 64","34 112 : 56","49 410 : 81","16 416 : 304","74 880 : 240","95 580 : 45"],
-  combo:["45 000 - 12 450 : 3 + 8 140 · 5","(64 200 - 18 600) : 6 + 320 · 40","100 000 - (34 500 + 4 280 · 8) : 4","7 200 : 90 + 3 600 · 20 - 15 480","(50 000 - 14 200) : 40 + 7 890","80 400 - (15 200 : 4 + 6 340) · 7","250 · 60 - 48 000 : 80 + 3 420","(840 · 30 - 12 600) : 60 + 19 450","90 000 - (450 · 60 + 18 400 : 4)","36 000 : (120 - 40) + 4 800 · 15","(28 400 + 16 600) : 50 · 34","500 000 - 64 000 : 80 · 450","(92 000 - 36 800) : 8 + 450 · 30","72 000 : 60 + (80 000 - 24 500) : 5","12 400 · 5 - (48 000 : 60 + 19 500)","(300 000 - 180 000) : 400 + 8 950","63 000 : 70 · 40 - (18 400 + 6 600)","45 000 + (32 400 - 18 000) : 90 · 70","(10 000 - 4 560 : 4) + 120 · 50","85 000 - (12 000 · 4 - 36 000 : 6)"],
-  eq:["x + 24 560 = 60 000","x - 18 450 = 34 890","75 000 - x = 28 340","x · 40 = 24 800","x : 30 = 1 500","36 000 : x = 90","(x + 1 500) - 800 = 4 200","(x - 450) + 1 200 = 3 500","800 - (x + 120) = 450","x · 6 - 1 200 = 4 800","x : 8 + 350 = 750","5 400 : x + 180 = 240","(x + 240) · 4 = 1 600","(x - 180) : 5 = 120","720 : (x - 15) = 24","x · 30 = 15 000 - 6 000","x : 40 = 320 + 180","45 000 - x = 120 · 80","x + 3 400 = 48 000 : 6","64 000 : x = 400 : 5"]
+/* ---- генератори ---- */
+function col(a,op,b){const w=Math.max(F(a).length,F(b).length)+2,f=n=>F(n).replace(/\u00a0/g," ");
+ return `<pre>${f(a).padStart(w)}\n${op+f(b).padStart(w-1)}\n${"─".repeat(w)}</pre>`}
+const dv=(a,b)=>`<div class="dv"><span>${F(a)}</span><span class="d">${b}</span></div>`;
+const G={
+ add(l){const d=[4,5,6][l-1],a=R(10**(d-1),10**d-1),b=R(10**(d-1),10**d-1);return{h:col(a,"+",b),a:a+b}},
+ sub(l){const d=[4,5,6][l-1];let a=R(10**(d-1),10**d-1),b=R(10**(d-2),a-1);if(l==3){a=P([100000,200000,500000,800000]);b=R(12345,a-10000)}return{h:col(a,"−",b),a:a-b}},
+ mul(l){const a=l==2?R(100,999):R(1000,9999),b=l==1?R(2,9):R(11,99);return{h:col(a,"×",b),a:a*b}},
+ div(l){const d=l==1?R(2,9):R(11,99),q=l==1?R(1000,9999):l==2?R(10,99):R(100,999);return{h:dv(q*d,d),a:q}},
+ combo(l){let t,a;
+  if(l==1){const x=R(20,90)*100,y=R(5,19)*100,c=R(2,9),d=R(100,900);t=`(${F(x)} + ${F(y)}) · ${c} − ${d}`;a=(x+y)*c-d}
+  else if(l==2){const c=R(2,9),k=R(100,900),x=R(2,9)*10000,d=R(2,9),e=R(100,900);t=`${F(x)} − ${F(c*k)} : ${c} + ${d} · ${e}`;a=x-k+d*e}
+  else{const c=R(2,9),k=R(50,400),b=R(1,9)*1000,d=R(3,9),e=R(1000,9000);t=`(${F(b+c*k)} − ${F(b)}) : ${c} · ${d} + ${F(e)}`;a=k*d+e}
+  return{h:`<div class="ex">${t}</div>`,a}},
+ eq(l){const x=R(20,900)*(l==1?10:5),a=R(2,9)*(l==1?100:10),c=R(2,9);let t;
+  if(l==1)t=P([`x + ${F(a)} = ${F(x+a)}`,`x − ${F(a)} = ${F(x-a)}`,`${F(x+a)} − x = ${F(a)}`]);
+  else if(l==2){const m=R(3,9);t=P([`x · ${m} = ${F(x*m)}`,`x : ${m} = ${F(x)}`,`${F(x*m)} : x = ${m}`])}
+  else t=P([`(x + ${F(a)}) · ${c} = ${F((x+a)*c)}`,`x · ${c} − ${F(a)} = ${F(x*c-a)}`]);
+  const ans=x;
+  return{h:`<div class="ex">${t}</div>`,a:ans}},
+ u(l){const[B,S,f]=P([["км","м",1000],["м","см",100],["кг","г",1000],["ц","кг",100],["год","хв",60],["грн","коп.",100],["хв","с",60],["т","кг",1000]]);
+  let a=R(1,9),b=R(1,f-2),c,d;
+  if(l==1)return{h:`<div class="ex">${a} ${B} ${b} ${S} = ? ${S}</div>`,a:a*f+b};
+  if(l==2){c=R(1,9);d=R(1,f-1);return{h:`<div class="ex">${a} ${B} ${b} ${S} + ${c} ${B} ${d} ${S} = ? ${S}</div>`,a:(a+c)*f+b+d}}
+  a=R(5,12);c=R(1,a-1);d=R(b+1,f-1);return{h:`<div class="ex">${a} ${B} ${b} ${S} − ${c} ${B} ${d} ${S} = ? ${S}</div>`,a:(a-c)*f+b-d}}
 };
-
-const TASK_CATS=[
-  ["sum3","🔢","Трьома сумами"],
-  ["sum_diff","⚖️","Сума і різниця"],
-  ["inc_dec","➕","Більше/менше на"],
-  ["mult_div","✖️","Більше/менше у рази"],
-  ["part_from_num","🍰","Частина від числа"],
-  ["num_from_part","🧩","Число за частиною"],
-  ["motion","🚗","Рух"],
-  ["joint","🛠","Спільна дія"]
-];
-
-const TASKS={
-  sum3:[
-    ["Задача 1: Три числа за їх сумами","Сума трьох чисел дорівнює 850. Сума першого і другого — 560, а другого і третього — 440. Знайди кожне число.","<strong>План:</strong><br>1) Третє число: 850 - 560 = 290.<br>2) Перше число: 850 - 440 = 410.<br>3) Друге число: 560 - 410 = 150.<br><strong>Відповідь:</strong> 410, 150, 290."],
-    ["Задача 2: Книжки на трьох полицях","На трьох полицях разом стоїть 140 книжок. На першій і другій полицях — 95 книжок, а на другій і третій — 80 книжок. Скільки книжок на кожній полиці?","<strong>План:</strong><br>1) На третій полиці: 140 - 95 = 45 (кн.).<br>2) На першій полиці: 140 - 80 = 60 (кн.).<br>3) На другій полиці: 95 - 60 = 35 (кн.).<br><strong>Відповідь:</strong> 60, 35 і 45 книжок."],
-    ["Задача 3: Учні трьох четвертих класів","У трьох четвертих класах навчається 92 учні. У 4-А і 4-Б разом 61 учень, а у 4-Б і 4-В — 63 учні. Скільки учнів у кожному класі?","<strong>План:</strong><br>1) У 4-В класі: 92 - 61 = 31 (уч.).<br>2) У 4-А класі: 92 - 63 = 29 (уч.).<br>3) У 4-Б класі: 61 - 29 = 32 (уч.).<br><strong>Відповідь:</strong> 29, 32 і 31 учень."]
-  ],
-  sum_diff:[
-    ["Задача 1: Три кошики з яблуками","У першому кошику 38 яблук, у другому — на 12 яблук менше, ніж у першому, а в третьому — стільки, скільки у першому і другому разом, без 20 яблук. Скільки всього яблук у трьох кошиках?","<strong>План:</strong><br>1) У другому кошику: 38 - 12 = 26 (ябл.).<br>2) У першому і другому разом: 38 + 26 = 64 (ябл.).<br>3) У третьому кошику: 64 - 20 = 44 (ябл.).<br>4) Усього в трьох кошиках: 64 + 44 = 108 (ябл.).<br><strong>Відповідь:</strong> 108 яблук."],
-    ["Задача 2: Два сувої тканини","У двох сувоях разом 120 м тканини, причому в першому на 30 м більше, ніж у другому. Третій сувій на 15 м коротший за перший. Скільки всього метрів тканини у трьох сувоях?","<strong>План:</strong><br>1) Подвоєна довжина другого: 120 - 30 = 90 (м).<br>2) У другому сувої: 90 : 2 = 45 (м).<br>3) У першому сувої: 45 + 30 = 75 (м).<br>4) У третьому сувої: 75 - 15 = 60 (м).<br>5) Усього в трьох сувоях: 120 + 60 = 180 (м).<br><strong>Відповідь:</strong> 180 м."],
-    ["Задача 3: Збір макулатури","Перший загін зібрав 145 кг макулатури, другий — на 35 кг менше, ніж перший, а третій — на 25 кг менше, ніж другий. Скільки кілограмів макулатури зібрали три загони разом?","<strong>План:</strong><br>1) Другий загін: 145 - 35 = 110 (кг).<br>2) Третій загін: 110 - 25 = 85 (кг).<br>3) Разом три загони: 145 + 110 + 85 = 340 (кг).<br><strong>Відповідь:</strong> 340 кг."]
-  ],
-  inc_dec:[
-    ["Задача 1: Печиво у трьох ящиках","У першому ящику 45 кг печива, у другому — на 15 кг менше, ніж у першому, а в третьому — на 20 кг більше, ніж у другому. Скільки всього кілограмів печива у трьох ящиках?","<strong>План:</strong><br>1) У другому ящику: 45 - 15 = 30 (кг).<br>2) У третьому ящику: 30 + 20 = 50 (кг).<br>3) Всього: 45 + 30 + 50 = 125 (кг).<br><strong>Відповідь:</strong> 125 кг."],
-    ["Задача 2: Екскурсія до музею","Першого дня музей відвідало 230 школярів, другого дня — на 40 школярів більше, а третього — на 70 школярів менше, ніж другого дня. Скільки всього школярів побувало в музеї за три дні?","<strong>План:</strong><br>1) Другого дня: 230 + 40 = 270 (шк.).<br>2) Третього дня: 270 - 70 = 200 (шк.).<br>3) Усього за три дні: 230 + 270 + 200 = 700 (шк.).<br><strong>Відповідь:</strong> 700 школярів."],
-    ["Задача 3: Ремонт дороги","За перший тиждень бригада відремонтувала 350 м дороги, за другий — на 80 м менше, а за третій — на 110 м більше, ніж за другий. Скільки метрів дороги відремонтували за три тижні?","<strong>План:</strong><br>1) За другий тиждень: 350 - 80 = 270 (м).<br>2) За третій тиждень: 270 + 110 = 380 (м).<br>3) Разом за три тижні: 350 + 270 + 380 = 1000 (м) = 1 км.<br><strong>Відповідь:</strong> 1000 м."]
-  ],
-  mult_div:[
-    ["Задача 1: Дерева у саду","У саду росте 12 яблунь, груш — у 3 рази більше, ніж яблунь, а слив — у 2 рази менше, ніж груш. Скільки всього дерев росте в саду?","<strong>План:</strong><br>1) Груш: 12 · 3 = 36 (дерев).<br>2) Слив: 36 : 2 = 18 (дерев).<br>3) Всього: 12 + 36 + 18 = 66 (дерев).<br><strong>Відповідь:</strong> 66 дерев."],
-    ["Задача 2: Пакування соку","У магазин привезли 84 літри яблучного соку, томатного — у 3 рази менше, ніж яблучного, а виноградного — у 2 рази більше, ніж томатного. Скільки всього літрів соку привезли?","<strong>План:</strong><br>1) Томатного соку: 84 : 3 = 28 (л).<br>2) Виноградного соку: 28 · 2 = 56 (л).<br>3) Всього соку: 84 + 28 + 56 = 168 (л).<br><strong>Відповідь:</strong> 168 літрів."],
-    ["Задача 3: Грибне полювання","Миколка знайшов 15 білих грибів, лисичок — у 4 рази більше, ніж білих, а підберезників — у 3 рази менше, ніж лисичок. На скільки більше лисичок, ніж підберезників, знайшов хлопчик?","<strong>План:</strong><br>1) Лисичок: 15 · 4 = 60 (гр.).<br>2) Підберезників: 60 : 3 = 20 (гр.).<br>3) Різниця: 60 - 20 = 40 (гр.).<br><strong>Відповідь:</strong> на 40 лисичок більше."]
-  ],
-  part_from_num:[
-    ["Задача 1: Сторінки книжки","У книжці 240 сторінок. Хлопчик прочитав 3/8 усіх сторінок. Скільки сторінок йому залишилося прочитати?","<strong>План:</strong><br>1) Прочитав: 240 : 8 · 3 = 90 (стор.).<br>2) Залишилося: 240 - 90 = 150 (стор.).<br><strong>Відповідь:</strong> 150 сторінок."],
-    ["Задача 2: Урожай яблук","У саду зібрали 720 кг яблук. 3/8 усіх яблук розклали в ящики, а решту віддали на сік. Скільки кілограмів яблук віддали на сік?","<strong>План:</strong><br>1) Яблука в ящиках: 720 : 8 · 3 = 270 (кг).<br>2) Яблука на сік: 720 - 270 = 450 (кг).<br><strong>Відповідь:</strong> 450 кг."],
-    ["Задача 3: Довжина туристичного маршруту","Довжина маршруту становить 450 км. Першого дня туристи проїхали 2/5 усього шляху, а другого — 1/3 того, що проїхали першого дня. Скільки кілометрів проїхали туристи за два дні?","<strong>План:</strong><br>1) Першого дня: 450 : 5 · 2 = 180 (км).<br>2) Другого дня: 180 : 3 = 60 (км).<br>3) За два дні: 180 + 60 = 240 (км).<br><strong>Відповідь:</strong> 240 км."]
-  ],
-  num_from_part:[
-    ["Задача 1: Кишенькові гроші","Дівчинка витратила 45 грн, що становить 3/5 усіх її грошей. Скільки грошей було в дівчинки спочатку?","<strong>План:</strong><br>1) 1/5 усіх грошей: 45 : 3 = 15 (грн).<br>2) Усі гроші: 15 · 5 = 75 (грн).<br><strong>Відповідь:</strong> 75 грн."],
-    ["Задача 2: Дорога до бабусі","Велосипедист проїхав 24 км, що становить 4/7 усієї відстані до села. Скільки кілометрів йому ще залишилося проїхати?","<strong>План:</strong><br>1) Уся відстань: 24 : 4 · 7 = 42 (км).<br>2) Залишилося: 42 - 24 = 18 (км).<br><strong>Відповідь:</strong> 18 км."],
-    ["Задача 3: Випікання тістечок","Кондитер прикрасив шоколадом 36 тістечок, що складає 3/8 усього замовлення. Скільки всього тістечок має спекти кондитер?","<strong>План:</strong><br>1) Шукаємо ціле замовлення: 36 : 3 · 8 = 96 (тіст.).<br><strong>Відповідь:</strong> 96 тістечок."]
-  ],
-  motion:[
-    ["Задача 1: Зустрічний рух автомобілів","Із двох міст, відстань між якими 480 км, назустріч один одному виїхали два автомобілі. Швидкість першого — 70 км/год, а другого — 50 км/год. Через скільки годин вони зустрінуться?","<strong>План:</strong><br>1) Швидкість зближення: 70 + 50 = 120 (км/год).<br>2) Час до зустрічі: 480 : 120 = 4 (год).<br><strong>Відповідь:</strong> через 4 години."],
-    ["Задача 2: Рух у протилежних напрямках","Від однієї пристані одночасно у протилежних напрямках відпливли два катери. Швидкість першого — 32 км/год, другого — 28 км/год. Яка відстань буде між ними через 3 години?","<strong>План:</strong><br>1) Швидкість віддалення: 32 + 28 = 60 (км/год).<br>2) Відстань через 3 год: 60 · 3 = 180 (км).<br><strong>Відповідь:</strong> 180 км."],
-    ["Задача 3: Зустріч двох поїздів","Два поїзди виїхали одночасно назустріч один одному з двох станцій і зустрілися через 5 годин. Перший поїзд ішов зі швидкістю 65 км/год, а другий — 75 км/год. Знайди відстань між станціями.","<strong>План:</strong><br>1) Швидкість зближення: 65 + 75 = 140 (км/год).<br>2) Відстань між станціями: 140 · 5 = 700 (км).<br><strong>Відповідь:</strong> 700 км."]
-  ],
-  joint:[
-    ["Задача 1: Спільна робота майстрів","Один майстер виготовляє 48 деталей за 6 годин, а другий — за 8 годин. За скільки годин вони виготовлять 70 деталей, працюючи разом?","<strong>План:</strong><br>1) Продуктивність 1-го: 48 : 6 = 8 (дет./год).<br>2) Продуктивність 2-го: 48 : 8 = 6 (дет./год).<br>3) Разом за годину: 8 + 6 = 14 (дет./год).<br>4) Час роботи: 70 : 14 = 5 (год).<br><strong>Відповідь:</strong> за 5 годин."],
-    ["Задача 2: Два насоси","Перший насос за 4 години накачує 120 відер води, а другий за 3 години — 60 відер. За скільки годин обидва насоси, працюючи разом, накачають 250 відер води?","<strong>План:</strong><br>1) Перший за 1 год: 120 : 4 = 30 (від.).<br>2) Другий за 1 год: 60 : 3 = 20 (від.).<br>3) Разом за 1 год: 30 + 20 = 50 (від.).<br>4) Час: 250 : 50 = 5 (год).<br><strong>Відповідь:</strong> за 5 годин."],
-    ["Задача 3: Набір тексту","Перший оператор набирає за годину 6 сторінок тексту, а другий — 4 сторінки. Скільки сторінок вони наберуть за 7 годин спільної роботи?","<strong>План:</strong><br>1) Разом за 1 годину: 6 + 4 = 10 (стор.).<br>2) За 7 годин: 10 · 7 = 70 (стор.).<br><strong>Відповідь:</strong> 70 сторінок."]
-  ]
-};
-
-const UNITS=["5 км 240 м = ... м","7 ц 35 кг = ... кг","4 доби 6 год = ... год","3400 кг = ... ц ... кг","2 год 15 хв = ... хв","8 м 4 см = ... см"];
+/* ---- задачі та логіка: [тема, умова, відповідь, розв’язок] ---- */
+const TASKS=[
+["sum3","Сума трьох чисел — 850. Сума першого і другого — 560, а другого і третього — 440. Знайди перше число.",410,"Перше: 850 − 440 = 410. Решта: третє 290, друге 150."],
+["sum3","На трьох полицях 140 книжок. На першій і другій — 95, на другій і третій — 80. Скільки книжок на другій полиці?",35,"1) 140 − 95 = 45 (третя). 2) 140 − 80 = 60 (перша). 3) 95 − 60 = 35 (друга)."],
+["sd","У першому кошику 38 яблук, у другому — на 12 менше, а в третьому — стільки, скільки в першому і другому разом, без 20. Скільки яблук у трьох кошиках?",108,"1) 38 − 12 = 26. 2) 38 + 26 = 64. 3) 64 − 20 = 44. 4) 64 + 44 = 108."],
+["sd","У двох сувоях разом 120 м тканини, у першому на 30 м більше, ніж у другому. Третій сувій на 15 м коротший за перший. Скільки метрів у трьох сувоях?",180,"1) (120 − 30) : 2 = 45 (другий). 2) 45 + 30 = 75 (перший). 3) 75 − 15 = 60. 4) 120 + 60 = 180."],
+["id","У першому ящику 45 кг печива, у другому — на 15 кг менше, у третьому — на 20 кг більше, ніж у другому. Скільки кілограмів печива в трьох ящиках?",125,"1) 45 − 15 = 30. 2) 30 + 20 = 50. 3) 45 + 30 + 50 = 125."],
+["id","Першого дня музей відвідало 230 школярів, другого — на 40 більше, а третього — на 70 менше, ніж другого. Скільки школярів було за три дні?",700,"1) 230 + 40 = 270. 2) 270 − 70 = 200. 3) 230 + 270 + 200 = 700."],
+["md","У саду 12 яблунь, груш — у 3 рази більше, ніж яблунь, а слив — у 2 рази менше, ніж груш. Скільки всього дерев у саду?",66,"1) 12 · 3 = 36. 2) 36 : 2 = 18. 3) 12 + 36 + 18 = 66."],
+["md","Привезли 84 л яблучного соку, томатного — у 3 рази менше, а виноградного — у 2 рази більше, ніж томатного. Скільки літрів соку привезли?",168,"1) 84 : 3 = 28. 2) 28 · 2 = 56. 3) 84 + 28 + 56 = 168."],
+["pn","У книжці 240 сторінок. Хлопчик прочитав 3/8 усіх сторінок. Скільки сторінок йому залишилось прочитати?",150,"1) 240 : 8 · 3 = 90. 2) 240 − 90 = 150."],
+["pn","Зібрали 720 кг яблук. 3/8 розклали в ящики, решту віддали на сік. Скільки кілограмів віддали на сік?",450,"1) 720 : 8 · 3 = 270. 2) 720 − 270 = 450."],
+["np","Дівчинка витратила 45 грн, що становить 3/5 усіх її грошей. Скільки грошей було спочатку?",75,"1) 45 : 3 = 15 (1/5). 2) 15 · 5 = 75."],
+["np","Велосипедист проїхав 24 км, що становить 4/7 усієї відстані. Скільки кілометрів йому ще залишилось?",18,"1) 24 : 4 · 7 = 42. 2) 42 − 24 = 18."],
+["mo","Із двох міст, відстань між якими 480 км, назустріч виїхали два автомобілі зі швидкістю 70 км/год і 50 км/год. Через скільки годин вони зустрінуться?",4,"1) 70 + 50 = 120 км/год. 2) 480 : 120 = 4 год."],
+["mo","Два поїзди виїхали назустріч і зустрілися через 5 год. Швидкість першого — 65 км/год, другого — 75 км/год. Яка відстань між станціями?",700,"1) 65 + 75 = 140. 2) 140 · 5 = 700 км."],
+["jo","Один майстер робить 48 деталей за 6 год, другий — за 8 год. За скільки годин вони зроблять 70 деталей разом?",5,"1) 48 : 6 = 8. 2) 48 : 8 = 6. 3) 8 + 6 = 14. 4) 70 : 14 = 5."],
+["jo","Перший оператор набирає за годину 6 сторінок, другий — 4. Скільки сторінок вони наберуть за 7 годин разом?",70,"1) 6 + 4 = 10. 2) 10 · 7 = 70."]];
 const LOGIC=[
-  ["🧩 Головоломка з розпилюванням","Колоду завдовжки 6 метрів потрібно розпиляти на метрові цурпалки. Скільки розпилів потрібно зробити?","<strong>Відповідь:</strong> 5 розпилів (останній розпил дає одразу дві останні частини)."],
-  ["🧩 Числова послідовність","Знайди закономірність і продовж ряд на два числа: 2, 5, 11, 23, ...","<strong>Відповідь:</strong> 47, 95 (кожне наступне число множиться на 2 і додається 1)."],
-  ["🧩 Хто старший?","Марійка старша за Олю на 3 роки. На скільки років Марійка буде старша за Олю через 5 років?","<strong>Відповідь:</strong> На 3 роки (різниця у віці не змінюється)."]
-];
-const RANKS=["Новачок","Будівельник","Дослідник","Майстер","Профі","Легенда","Супер-геній"];
+["Колоду завдовжки 6 м розпилюють на метрові цурпалки. Скільки розпилів потрібно?",5,"Частин 6, а розпилів на 1 менше: 5."],
+["Продовж ряд: 2, 5, 11, 23, … Яке число стоїть наступним?",47,"Кожне число · 2 + 1: 23 · 2 + 1 = 47."],
+["Марійка старша за Олю на 3 роки. На скільки років вона буде старша за Олю через 5 років?",3,"Різниця у віці не змінюється."],
+["Цеглина важить 1 кг і ще півцеглини. Скільки кілограмів важить уся цеглина?",2,"Півцеглини — це 1 кг, тож уся цеглина — 2 кг."],
+["Годинник б’є 3 рази за 4 секунди. За скільки секунд він проб’є 6 разів?",10,"Між 3 ударами 2 проміжки: по 2 с. Між 6 ударами 5 проміжків: 5 · 2 = 10 с."],
+["П’ятеро друзів зустрілися, і кожен потиснув руку кожному. Скільки всього було рукостискань?",10,"4 + 3 + 2 + 1 = 10."],
+["Продовж ряд: 1, 4, 9, 16, … Яке число наступне?",25,"Це квадрати: 5 · 5 = 25."],
+["У дворі кури й кролики: 5 голів і 14 ніг. Скільки там кролів?",2,"Якби всі були курми, ніг було б 10. Зайві 4 ноги — це 2 кролі."],
+["Мамі на 28 років більше, ніж дочці. Дочці 15 років. Скільки років мамі?",43,"15 + 28 = 43."],
+["3 кішки ловлять 3 мишей за 3 хвилини. Скільки кішок піймають 100 мишей за 100 хвилин?",3,"Кожна кішка за 3 хв ловить 1 мишу, а за 100 хв — ще більше. Кількість кішок і мишей зростає в однаковій пропорції, тому кішок знову 3."]];
 
-/* ---- збереження ---- */
-const KEY="math-trainer-4-v1";
-let st={done:{},guideHidden:false};
-try{const p=JSON.parse(localStorage.getItem(KEY)||"null");if(p){st.done=p.done||{};st.guideHidden=!!p.guideHidden}}catch(e){document.getElementById("warn").style.display="block"}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){document.getElementById("warn").style.display="block"}}
-
-/* ---- ключі та підрахунки ---- */
-const kE=(c,i)=>"e|"+c+"|"+EXPR[c][i], kT=(c,i)=>"t|"+c+"|"+i, kU=i=>"u|"+i, kL=i=>"l|"+i;
-const groups={units:UNITS.map((_,i)=>kU(i)),logic:LOGIC.map((_,i)=>kL(i))};
-CATS.forEach(([c])=>groups[c]=EXPR[c].map((_,i)=>kE(c,i)));
-groups.expr=CATS.flatMap(([c])=>groups[c]);
-TASK_CATS.forEach(([c])=>groups["t_"+c]=TASKS[c].map((_,i)=>kT(c,i)));
-groups.tasks=TASK_CATS.flatMap(([c])=>groups["t_"+c]);
-
-const all=groups.expr.concat(groups.tasks,groups.units,groups.logic);
-const cnt=g=>groups[g].filter(k=>st.done[k]).length;
-const $=id=>document.getElementById(id);
-let cat="add", taskCat="sum3", filter="all";
+/* ---- стан ---- */
+const KEY="space-math-4-v1";let st={xp:0,c:{},d:{}};
+try{const p=JSON.parse(localStorage.getItem(KEY)||"null");if(p)st=Object.assign(st,p)}catch(e){$("warn").style.display="block"}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){$("warn").style.display="block"}};
+let tab="expr",cat="add",lvl=1,cur,tries=0,rev=false,tt;
+const NEED=5,ck=(t,c,l)=>t+"|"+c+"|"+l,cn=(t,c,l)=>st.c[ck(t,c,l)]||0;
+const pool=()=>tab=="tasks"?TASKS.filter(t=>t[0]==cat):LOGIC.map(t=>["l",...t]);
+const dkey=()=>tab=="tasks"?cat:"l",dn=c=>(st.d[c]||[]).length;
+const poolOf=(t,c)=>t=="tasks"?TASKS.filter(x=>x[0]==c).length:LOGIC.length;
+function secDone(t){const cs=SECT[t][2];return cs.reduce((s,[c])=>s+(t=="expr"||t=="units"?[1,2,3].reduce((q,l)=>q+Math.min(cn(t,c,l),NEED),0):dn(t=="tasks"?c:"l")),0)}
+function secAll(t){const cs=SECT[t][2];return cs.reduce((s,[c])=>s+(t=="expr"||t=="units"?3*NEED:poolOf(t,c)),0)}
+const hasLv=()=>tab=="expr"||tab=="units";
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2400)}
 
 /* ---- відображення ---- */
-function btn(k,done,t){return `<button class="btn ok" data-k="${k}" aria-pressed="${done}" title="Натисни ще раз, щоб скасувати">${done?"✓ Виконано":t}</button>`}
+function renderTop(){const lv=Math.floor(st.xp/100)+1;
+ $("rk").textContent="⭐ Рівень "+lv+" · "+RANKS[Math.min(lv-1,RANKS.length-1)];
+ $("xb").style.width=(st.xp%100)+"%";$("xt").textContent=(st.xp%100)+" / 100 очок до наступного рівня · разом "+st.xp;
+ $("tabs").innerHTML=Object.entries(SECT).map(([k,[i,n]])=>`<button class="tab ${k==tab?"on":""}" data-t="${k}"><span>${i}</span>${n}<small>${secDone(k)}/${secAll(k)}</small></button>`).join("")}
+function renderNav(){const cs=SECT[tab][2];
+ $("pills").style.display=cs.length>1?"flex":"none";
+ $("pills").innerHTML=cs.map(([c,i,n])=>{const d=tab=="expr"?[1,2,3].reduce((q,l)=>q+Math.min(cn(tab,c,l),NEED),0):tab=="tasks"?dn(c):0;const a=tab=="expr"?3*NEED:poolOf(tab,c);return`<button class="pill ${c==cat?"on":""}" data-c="${c}">${i} ${n}<em>${d}/${a}</em></button>`}).join("");
+ $("lvs").style.display=hasLv()?"flex":"none";
+ $("lvs").innerHTML=hasLv()?[1,2,3].map(l=>{const n=cn(tab,cat,l);return`<button class="lv ${l==lvl?"on":""} ${n>=NEED?"ok":""}" data-l="${l}">${n>=NEED?"✅":"⭐"} ${tab=="units"?ULV[l-1]:LVN[l-1]}<small>${Math.min(n,NEED)} / ${NEED} · по ${10*l} очок</small></button>`}).join(""):""}
+function next(){rev=false;tries=0;$("inp").value="";$("msg").textContent="";$("msg").className="msg";$("sol").classList.remove("open");
+ $("hint").style.display=hasLv()?"none":"";
+ if(hasLv()){cur=G[tab=="units"?"u":cat](lvl);cur.pts=10*lvl;
+  $("say").textContent=tab=="units"?"Тимко: перепиши в зошит, обчисли і запиши відповідь лише числом.":cat=="eq"?"Тимко: знайди x. Розв’яжи в зошиті, запиши x.":cat=="combo"?"Тимко: спочатку порядок дій! Розв’яжи в зошиті.":"Тимко: перепиши приклад у зошит у стовпчик і порахуй!";
+  $("board").innerHTML=cur.h}
+ else{const p=pool(),dn_=st.d[dkey()]||[],free=p.map((_,i)=>i).filter(i=>!dn_.includes(i));
+  const i=free.length?free[0]:R(0,p.length-1);cur={a:p[i][2],sol:p[i][3],i,pts:free.length?(tab=="tasks"?30:20):0};
+  $("say").textContent=tab=="tasks"?"Тимко: запиши в зошит коротку умову й розв’язок, а тут — відповідь.":"Тимко: подумай добре! Це хитре завдання.";
+  $("board").innerHTML=`<div class="tx">${p[i][1]}</div>`;
+  if(!free.length)toast("🏆 Усе в цій темі пройдено! Тренуйся ще — без очок.")}
+ $("sol").innerHTML="<b>Розв’язок:</b> "+(cur.sol||"")}
+function show(){renderTop();renderNav();next()}
 
-function renderExpr(){
-  const c=CATS.find(x=>x[0]===cat);
-  $("catTitle").textContent=c[1]+" "+c[2];
-  $("grid").innerHTML=EXPR[cat].map((e,i)=>({e,i,k:kE(cat,i)})).filter(o=>filter==="all"||!st.done[o.k]).map(o=>`
-   <div class="item ${st.done[o.k]?"done":""}"><div class="row"><span class="num">${o.i+1}</span><span class="txt">${o.e}</span><span class="pb"></span></div>${btn(o.k,!!st.done[o.k],"Позначити виконаним")}</div>`).join("")||`<p>🎉 Усе виконано! Обери іншу тему.</p>`;
-  document.querySelectorAll("#pills .pill").forEach(p=>p.classList.toggle("active",p.dataset.c===cat));
-}
-
-function renderPills(){
-  $("pills").innerHTML=CATS.map(([c,ic,n])=>`<button class="pill" data-c="${c}" role="tab">${ic} ${n}<em id="p-${c}"></em></button>`).join("");
-  $("taskPills").innerHTML=TASK_CATS.map(([c,ic,n])=>`<button class="pill" data-tc="${c}" role="tab">${ic} ${n}<em id="tp-${c}"></em></button>`).join("");
-}
-
-function renderCards(box,list,prefix,doneLabel){
-  $(box).innerHTML=list.map((t,i)=>{const k=prefix(i),d=!!st.done[k];return `<div class="cardx ${d?"done":""}"><h3>${t[0]}</h3><p>${t[1]}</p>
-  <div class="acts"><button class="btn ghost" data-h="${box}${i}">💡 ${box==="logicBox"?"Показати відповідь":"Підказка та розв’язок"}</button>${btn(k,d,doneLabel)}</div>
-  <div class="hint" id="${box}${i}">${t[2]}</div></div>`}).join("");
-}
-
-function renderTasks(){
-  const c=TASK_CATS.find(x=>x[0]===taskCat);
-  $("taskCatTitle").textContent=c[1]+" "+c[2];
-  document.querySelectorAll("#taskPills .pill").forEach(p=>p.classList.toggle("active",p.dataset.tc===taskCat));
-  renderCards("tasksBox",TASKS[taskCat],i=>kT(taskCat,i),"Позначити розв’язаним");
-}
-
-function renderUnits(){
-  $("unitsBox").innerHTML=UNITS.map((u,i)=>{const k=kU(i),d=!!st.done[k];return `<div class="item ${d?"done":""}"><div class="row"><span class="num">${i+1}</span><span class="txt">${u}</span><span class="pb"></span></div>${btn(k,d,"Позначити виконаним")}</div>`}).join("");
-}
-
-function update(){
-  const done=all.filter(k=>st.done[k]).length,xp=done*10,lv=Math.floor(xp/100)+1;
-  $("lvl").textContent="⭐ Рівень "+lv+" · "+RANKS[Math.min(lv-1,RANKS.length-1)];
-  $("xpbar").style.width=(xp%100)+"%";
-  $("xptxt").textContent=(xp%100)+" / 100 очок до наступного рівня";
-  ["expr","tasks","units","logic"].forEach(g=>$("c-"+g).textContent=cnt(g)+" / "+groups[g].length);
-  CATS.forEach(([c])=>{const e=$("p-"+c);e.textContent=cnt(c)+"/"+groups[c].length;e.parentNode.classList.toggle("full",cnt(c)===groups[c].length)});
-  TASK_CATS.forEach(([c])=>{const e=$("tp-"+c),gk="t_"+c;e.textContent=cnt(gk)+"/"+groups[gk].length;e.parentNode.classList.toggle("full",cnt(gk)===groups[gk].length)});
-  $("catCount").textContent="Виконано "+cnt(cat)+" з "+groups[cat].length;
-  $("catBar").style.width=(100*cnt(cat)/groups[cat].length)+"%";
-  const tgk="t_"+taskCat;
-  $("taskCatCount").textContent="Виконано "+cnt(tgk)+" з "+groups[tgk].length;
-  $("taskCatBar").style.width=(100*cnt(tgk)/groups[tgk].length)+"%";
-  return lv;
-}
-
-let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2200)}
+/* ---- перевірка ---- */
+function check(){const v=Number($("inp").value.replace(/[\s\u00a0]/g,"").replace(",","."));if($("inp").value.trim()===""||isNaN(v)){$("msg").textContent="Введи число 🙂";$("msg").className="msg no";return}
+ const m=$("msg");
+ if(v===cur.a){const pts=rev?0:cur.pts;let extra="";
+  if(hasLv()){const k=ck(tab,cat,lvl),b=cn(tab,cat,lvl);if(b<NEED&&!rev)st.c[k]=b+1;if(b<NEED&&b+1==NEED)extra=" 🏅 Орбіту пройдено!"}
+  else if(!rev){const k=dkey();st.d[k]=st.d[k]||[];if(!st.d[k].includes(cur.i)){st.d[k].push(cur.i)}}
+  const before=Math.floor(st.xp/100);
+  const lim=hasLv()&&cn(tab,cat,lvl)>NEED?0:pts;
+  st.xp+=hasLv()?(cn(tab,cat,lvl)<=NEED?pts:0):pts;save();
+  m.className="msg ok";m.textContent=P(OK)+(pts?" +"+pts+" очок":"")+extra;
+  if(Math.floor(st.xp/100)>before)toast("🚀 Новий рівень! "+RANKS[Math.min(Math.floor(st.xp/100),RANKS.length-1)]);
+  renderTop();renderNav();setTimeout(next,1500)}
+ else{tries++;m.className="msg no";m.textContent=P(NO)+(tries>=3&&hasLv()?" (Підказка: порахуй у стовпчику ще раз, уважно до розрядів)":"");
+  $("board").classList.remove("shake");void $("board").offsetWidth;$("board").classList.add("shake")}}
 
 /* ---- події ---- */
-document.addEventListener("click",e=>{
-  const t=e.target.closest(".tab");
-  if(t){
-    document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===t));
-    document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===t.dataset.tab));
-    if(t.dataset.tab==="expr")renderExpr();
-    if(t.dataset.tab==="tasks")renderTasks();
-    return;
-  }
-  const p=e.target.closest("#pills .pill");
-  if(p){cat=p.dataset.c;renderExpr();update();return}
-  
-  const tp=e.target.closest("#taskPills .pill");
-  if(tp){taskCat=tp.dataset.tc;renderTasks();update();return}
-
-  const f=e.target.closest("#filter button");
-  if(f){filter=f.dataset.f;document.querySelectorAll("#filter button").forEach(x=>x.classList.toggle("on",x===f));renderExpr();return}
-  
-  const h=e.target.closest("[data-h]");
-  if(h){document.getElementById(h.dataset.h).classList.toggle("open");return}
-  
-  const b=e.target.closest("[data-k]");
-  if(b){
-    const k=b.dataset.k,card=b.closest(".item,.cardx"),before=Math.floor(all.filter(x=>st.done[x]).length/10);
-    if(st.done[k])delete st.done[k];else st.done[k]=true;
-    save();const d=!!st.done[k];
-    card.classList.toggle("done",d);b.setAttribute("aria-pressed",d);
-    b.textContent=d?"✓ Виконано":(k.startsWith("t|")?"Позначити розв’язаним":"Позначити виконаним");
-    const lv=update(),after=Math.floor(all.filter(x=>st.done[x]).length/10);
-    if(d){
-      const g=k.startsWith("e|")?k.split("|")[1]:(k.startsWith("t|")?"t_"+k.split("|")[1]:null);
-      if(after>before)toast("🚀 Новий рівень: "+lv+"!");
-      else if(g&&cnt(g)===groups[g].length)toast("🏆 Тему пройдено!");
-      else toast("+10 очок ✓");
-    }
-  }
-});
-
-$("hideGuide").onclick=()=>{st.guideHidden=true;save();$("guide").style.display="none"};
-$("reset").onclick=()=>{if(confirm("Точно видалити весь прогрес? Це не можна скасувати.")){st.done={};save();init()}};
-
-function init(){
-  $("guide").style.display=st.guideHidden?"none":"block";
-  renderExpr();
-  renderTasks();
-  renderUnits();
-  renderCards("logicBox",LOGIC,kL,"Позначити виконаним");
-  update();
-}
-renderPills();init();
+$("chk").onclick=check;$("inp").onkeydown=e=>{if(e.key==="Enter")check()};
+$("skip").onclick=next;
+$("hint").onclick=()=>{rev=true;$("sol").classList.add("open");$("msg").textContent="З підказкою очки не нараховуються, але потренуватись можна!";$("msg").className="msg"};
+$("tabs").onclick=e=>{const b=e.target.closest("[data-t]");if(!b)return;tab=b.dataset.t;cat=SECT[tab][2][0][0];lvl=1;show()};
+$("pills").onclick=e=>{const b=e.target.closest("[data-c]");if(!b)return;cat=b.dataset.c;show()};
+$("lvs").onclick=e=>{const b=e.target.closest("[data-l]");if(!b)return;lvl=+b.dataset.l;renderNav();next()};
+$("reset").onclick=()=>{if(confirm("Точно скинути весь прогрес? Це не можна скасувати.")){st={xp:0,c:{},d:{}};save();show()}};
+show();
 </script>
 </body>
 </html>
