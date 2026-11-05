@@ -2,21 +2,17 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Космічна місія Тимка – математика 4 клас</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Космічна місія Тимка — математика 4 клас</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;900&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0d1033;--pn:#1a1f5c;--pn2:#262c7a;--ed:#3a42a8;
-  --tx:#f1f4ff;--mu:#a9b2ee;--cy:#4de1ff;--gr:#5df2a0;
-  --ye:#ffd84d;--pk:#ff7ad9;--rd:#ff6b7a;
-}
+:root{--bg:#0d1033;--pn:#1a1f5c;--pn2:#262c7a;--ed:#3a42a8;--tx:#f1f4ff;--mu:#a9b2ee;--cy:#4de1ff;--gr:#5df2a0;--ye:#ffd84d;--pk:#ff7ad9;--rd:#ff6b7a}
 *{box-sizing:border-box;margin:0;padding:0;font-family:Nunito,system-ui,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
 body{
   background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.4;
-  overflow-x:hidden;width:100vw; /* Жорстке обмеження ширини */
+  overflow-x:hidden; /* Приховуємо випадкові мікро-скроли, але без 100vw */
   background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 120px,#cfe,transparent),radial-gradient(2px 2px at 160px 60px,#ffd84d,transparent),radial-gradient(circle at 80% 0,#3b2a8f55,transparent 50%);
   background-size:200px 160px,200px 160px,240px 200px,100% 100%;
   background-attachment:fixed;
@@ -25,108 +21,105 @@ button{cursor:pointer;font:inherit;font-weight:800;color:inherit;touch-action:ma
 :focus-visible{outline:3px solid var(--ye);outline-offset:2px}
 h1,h2,.big,.rk{font-family:Rubik,sans-serif}
 
-.top{display:flex;gap:.8rem;align-items:center;justify-content:space-between;flex-wrap:wrap;max-width:1000px;margin:auto;padding:.8rem 1rem;width:100%}
-.brand{display:flex;gap:.7rem;align-items:center;min-width:0}
-.brand i{font-style:normal;font-size:2.2rem}
-.brand h1{font-size:1.25rem;font-weight:900;line-height:1.2}
-.brand p{color:var(--mu);font-size:.8rem}
+/* --- ОСНОВНИЙ (КОМП'ЮТЕРНИЙ) ДИЗАЙН --- */
+.top{display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;max-width:1000px;margin:auto;padding:1rem}
+.brand{display:flex;gap:.7rem;align-items:center}
+.brand i{font-style:normal;font-size:2.4rem}
+.brand h1{font-size:1.3rem;font-weight:900}
+.brand p{color:var(--mu);font-size:.85rem}
 
-.pl{background:var(--pn);border:2px solid var(--ed);border-radius:16px;padding:.5rem .9rem;flex:1 1 260px;min-width:0}
-.rk{font-weight:700;font-size:.95rem}
-.bar{height:12px;background:#0d1033;border-radius:8px;overflow:hidden;margin:.3rem 0}
+.pl{background:var(--pn);border:2px solid var(--ed);border-radius:16px;padding:.6rem 1rem;flex:0 1 310px;min-width:240px}
+.rk{font-weight:700}
+.bar{height:14px;background:#0d1033;border-radius:8px;overflow:hidden;margin:.3rem 0}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--gr));width:0;transition:width .4s}
-.sm{font-size:.78rem;color:var(--mu)}
+.sm{font-size:.8rem;color:var(--mu)}
 
-main{max-width:1000px;width:100%;margin:auto;padding:0 .8rem 2.5rem;min-width:0}
+main{max-width:1000px;margin:auto;padding:0 1rem 3rem}
 
-.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem;margin-bottom:.8rem;width:100%}
-.tab{background:var(--pn);border:2px solid var(--ed);border-radius:14px;padding:.5rem .2rem;font-size:.85rem;display:flex;flex-direction:column;align-items:center;gap:.1rem;text-align:center}
-.tab span{font-size:1.35rem}
-.tab small{color:var(--mu);font-weight:600;font-size:.75rem}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem}
+.tab{background:var(--pn);border:2px solid var(--ed);border-radius:14px;padding:.6rem .2rem;font-size:.95rem;display:flex;flex-direction:column;align-items:center}
+.tab span{font-size:1.5rem}
+.tab small{color:var(--mu);font-weight:600}
 .tab.on{background:var(--cy);color:#06113a;border-color:var(--cy)}
 .tab.on small{color:#06113a}
 
-.pills,.lvs{
-  display:flex;gap:.5rem;overflow-x:auto;padding:.2rem .2rem .6rem;
-  scrollbar-width:none;-webkit-overflow-scrolling:touch;width:100%;
-}
+/* Плавний скрол для підменю на всіх пристроях */
+.pills,.lvs{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem 0 .6rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .pills::-webkit-scrollbar,.lvs::-webkit-scrollbar{display:none}
 
-.pill{white-space:nowrap;background:var(--pn);border:2px solid var(--ed);border-radius:30px;padding:.45rem .85rem;min-height:42px;display:inline-flex;align-items:center;font-size:.9rem}
+.pill{white-space:nowrap;background:var(--pn);border:2px solid var(--ed);border-radius:30px;padding:.5rem .9rem;min-height:44px;display:inline-flex;align-items:center}
 .pill.on{background:var(--pk);border-color:var(--pk);color:#2a0a25}
-.pill em{font-style:normal;font-size:.75rem;opacity:.85;margin-left:.35rem}
+.pill em{font-style:normal;font-size:.78rem;opacity:.85;margin-left:.3rem}
 
-.lv{flex:0 0 135px;background:var(--pn2);border:2px solid var(--ed);border-radius:14px;padding:.5rem .4rem;text-align:center;min-height:52px;font-size:.85rem}
-.lv.on{border-color:var(--ye);background:#3a3590}
-.lv.ok{border-color:var(--gr)}
-.lv small{display:block;color:var(--mu);font-weight:600;font-size:.72rem}
+.lv{flex:1;min-width:120px;background:var(--pn2);border:2px solid var(--ed);border-radius:14px;padding:.5rem;text-align:center;min-height:56px}
+.lv.on{border-color:var(--ye);background:#3a3590}.lv.ok{border-color:var(--gr)}
+.lv small{display:block;color:var(--mu);font-weight:600}
 
-/* Фікс проблеми з розширенням блоку за екран */
-.stage{background:var(--pn);border:2px solid var(--ed);border-radius:20px;padding:1rem;display:grid;grid-template-columns:130px minmax(0,1fr);gap:1rem;align-items:start;width:100%;overflow:hidden}
-.stage > div{min-width:0;width:100%}
-
+.stage{background:var(--pn);border:2px solid var(--ed);border-radius:20px;padding:1.2rem;display:grid;grid-template-columns:150px 1fr;gap:1.2rem;align-items:start}
 .ty{text-align:center}
-.ty b{display:block;font-size:4.5rem;line-height:1;animation:fl 3s ease-in-out infinite}
-.ty span{font-family:Rubik;font-weight:700;color:var(--gr);font-size:.95rem}
-@keyframes fl{50%{transform:translateY(-8px) rotate(3deg)}}
+.ty b{display:block;font-size:5.5rem;line-height:1;animation:fl 3s ease-in-out infinite}
+.ty span{font-family:Rubik;font-weight:700;color:var(--gr)}
+@keyframes fl{50%{transform:translateY(-10px) rotate(4deg)}}
 
-.say{background:#fff;color:#1b1f4d;border-radius:14px;padding:.65rem .9rem;font-weight:800;position:relative;margin-bottom:.8rem;font-size:.95rem;width:100%;overflow-wrap:break-word;word-wrap:break-word;word-break:normal}
-.say::before{content:"";position:absolute;left:-9px;top:18px;border:9px solid transparent;border-right-color:#fff;border-left:0}
+.say{background:#fff;color:#1b1f4d;border-radius:16px;padding:.7rem 1rem;font-weight:800;position:relative;margin-bottom:1rem;overflow-wrap:break-word}
+.say::before{content:"";position:absolute;left:-10px;top:18px;border:10px solid transparent;border-right-color:#fff;border-left:0}
 
-.board{background:#0a0d2b;border:2px dashed var(--ed);border-radius:14px;padding:.9rem;margin-bottom:.8rem;overflow-x:auto;text-align:center;width:100%}
-pre{font-family:"Courier New",monospace;font-size:clamp(1.4rem, 6vw, 2rem);font-weight:700;line-height:1.2;display:inline-block;color:var(--ye);text-align:right}
-.dv{display:inline-flex;font-family:"Courier New",monospace;font-size:clamp(1.4rem, 6vw, 2rem);font-weight:700;color:var(--ye);align-items:flex-start}
-.dv span{padding:0 .5rem}
+.board{background:#0a0d2b;border:2px dashed var(--ed);border-radius:14px;padding:1rem;margin-bottom:1rem;overflow-x:auto;text-align:center}
+/* Використовуємо clamp для безпечного масштабування великих прикладів */
+pre{font-family:"Courier New",monospace;font-size:clamp(1.5rem, 5vw, 2rem);font-weight:700;line-height:1.25;display:inline-block;color:var(--ye);text-align:right}
+.dv{display:inline-flex;font-family:"Courier New",monospace;font-size:clamp(1.5rem, 5vw, 2rem);font-weight:700;color:var(--ye);align-items:flex-start}
+.dv span{padding:0 .6rem}
 .dv .d{border-left:3px solid var(--ye);border-bottom:3px solid var(--ye);margin-left:.3rem;margin-top:0}
-.ex{font-family:Rubik;font-size:clamp(1.2rem, 5vw, 1.7rem);font-weight:700;color:var(--ye);overflow-wrap:anywhere}
-.tx{font-size:1.1rem;font-weight:700;line-height:1.45;text-align:left;overflow-wrap:break-word}
+.ex{font-family:Rubik;font-size:clamp(1.3rem, 5vw, 1.7rem);font-weight:700;color:var(--ye);overflow-wrap:anywhere}
+.tx{font-size:1.2rem;font-weight:700}
 
-.row{display:flex;gap:.5rem;flex-wrap:wrap;width:100%}
-input{
-  flex:1;min-width:140px;font-size:1.5rem;font-family:Rubik;font-weight:700;
-  padding:.55rem .8rem;border-radius:12px;border:2.5px solid var(--ed);
-  background:#0a0d2b;color:var(--tx);min-height:50px;text-align:center;
-  width:100%;box-sizing:border-box;
-}
-.b{border:0;border-radius:12px;padding:.65rem 1rem;min-height:50px;background:var(--gr);color:#04301a;box-shadow:0 4px 0 #229a5c;font-size:1rem}
-.b.g{background:var(--pn2);color:var(--tx);box-shadow:0 4px 0 #14185a;font-size:.9rem}
+.row{display:flex;gap:.6rem;flex-wrap:wrap}
+input{flex:1;min-width:140px;font-size:1.6rem;font-family:Rubik;font-weight:700;padding:.5rem .8rem;border-radius:12px;border:3px solid var(--ed);background:#0a0d2b;color:var(--tx)}
+.b{border:0;border-radius:12px;padding:.7rem 1.1rem;min-height:48px;background:var(--gr);color:#04301a;box-shadow:0 4px 0 #229a5c}
+.b.g{background:var(--pn2);color:var(--tx);box-shadow:0 4px 0 #14185a}
 .b:active{transform:translateY(3px);box-shadow:none}
 
-.msg{margin-top:.6rem;font-weight:800;min-height:1.4rem;font-size:.95rem;overflow-wrap:break-word}
+.msg{margin-top:.8rem;font-weight:800;min-height:1.5rem;overflow-wrap:break-word}
 .msg.ok{color:var(--gr)}.msg.no{color:var(--rd)}
-.sol{display:none;margin-top:.7rem;background:#2b2a70;border-radius:12px;padding:.75rem;font-size:.9rem;line-height:1.4;overflow-wrap:break-word}
+.sol{display:none;margin-top:.8rem;background:#2b2a70;border-radius:12px;padding:.8rem;overflow-wrap:break-word}
 .sol.open{display:block}
-.shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 
-.toast{position:fixed;left:50%;bottom:1.2rem;transform:translate(-50%,200%);background:var(--ye);color:#2a2000;font-weight:900;padding:.75rem 1.2rem;border-radius:14px;transition:transform .25s;z-index:99;text-align:center;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.toast{position:fixed;left:50%;bottom:1.2rem;transform:translate(-50%,200%);background:var(--ye);color:#2a2000;font-weight:900;padding:.8rem 1.3rem;border-radius:14px;transition:transform .25s;z-index:99;text-align:center;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
 .toast.show{transform:translate(-50%,0)}
 
-footer{text-align:center;padding:1rem;margin-top:auto}
-footer button{background:none;border:0;color:var(--mu);text-decoration:underline;font-weight:600;font-size:.85rem;padding:.5rem}
-.warn{display:none;background:#5a1d2a;border-radius:10px;padding:.5rem .8rem;margin-bottom:.8rem;font-size:.85rem}
+footer{text-align:center;padding:1rem}
+footer button{background:none;border:0;color:var(--mu);text-decoration:underline;font-weight:600;padding:1rem}
+.warn{display:none;background:#5a1d2a;border-radius:10px;padding:.6rem 1rem;margin-bottom:1rem}
 
-/* --- Мобільна адаптація --- */
-@media (max-width:640px){
-  .top{padding:.6rem .8rem}
+/* --- МОБІЛЬНИЙ ДИЗАЙН (Вмикається тільки на телефонах) --- */
+@media(max-width:640px){
+  .top{padding:.8rem}
   
-  /* Вкладки у 2 ряди на мобільних для кращої читабельності */
-  .tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+  /* Вкладки стають 2х2, щоб текст не вилазив */
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .tab small{display:inline-block} /* Повертаємо підписи на мобілках */
   
-  /* Персонаж і завдання стають один під одним */
-  .stage{grid-template-columns:minmax(0,1fr);gap:.7rem;padding:.9rem}
-  .ty{display:flex;align-items:center;gap:.7rem;text-align:left}
-  .ty b{font-size:3rem}
+  /* Тимко переїжджає нагору */
+  .stage{grid-template-columns:1fr;padding:1rem}
+  .ty{display:flex;align-items:center;gap:.8rem;text-align:left}
+  .ty b{font-size:3.5rem}
   
-  /* Стрілочка діалогу тепер показує вгору на мобільному */
-  .say::before{left:20px;top:-8px;border:8px solid transparent;border-bottom-color:#fff;border-top:0;border-right-color:transparent}
+  /* Стрілочка діалогу тепер вказує на Тимка вгору */
+  .say::before{left:25px;top:-10px;border:10px solid transparent;border-bottom-color:#fff;border-top:0;border-right-color:transparent}
   
-  .row{flex-direction:column}
-  .row input{width:100%;min-height:52px}
+  /* Кнопки та інпути розтягуються для зручного натискання */
+  .row{flex-direction:column;gap:.5rem}
+  .row input{width:100%;min-height:52px;text-align:center}
   .row .b{width:100%;min-height:50px}
+  
+  /* Другий ряд кнопок (Підказка / Інше) лишаємо в один ряд */
   .row.sub-actions{flex-direction:row}
-  .row.sub-actions .b{flex:1;padding:.65rem .4rem}
-  .lv{flex:0 0 115px}
+  .row.sub-actions .b{flex:1;padding:.6rem .4rem;font-size:.9rem}
+  
+  .lv{flex:0 0 120px} /* Щоб рівні гарно скролились */
 }
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -245,7 +238,7 @@ function renderTop(){
   const lv=Math.floor(st.xp/100)+1;
   $("rk").textContent="⭐ Рівень "+lv+" · "+RANKS[Math.min(lv-1,RANKS.length-1)];
   $("xb").style.width=(st.xp%100)+"%";
-  $("xt").textContent=(st.xp%100)+" / 100 очок до рівня · разом "+st.xp;
+  $("xt").textContent=(st.xp%100)+" / 100 очок до наступного рівня · разом "+st.xp;
   $("tabs").innerHTML=Object.entries(SECT).map(([k,[i,n]])=>`<button class="tab ${k==tab?"on":""}" data-t="${k}"><span>${i}</span>${n}<small>${secDone(k)}/${secAll(k)}</small></button>`).join("");
 }
 
@@ -261,7 +254,7 @@ function renderNav(){
   $("lvs").style.display=hasLv()?"flex":"none";
   $("lvs").innerHTML=hasLv()?[1,2,3].map(l=>{
     const n=cn(tab,cat,l);
-    return`<button class="lv ${l==lvl?"on":""} ${n>=NEED?"ok":""}" data-l="${l}">${n>=NEED?"✅":"⭐"} ${tab=="units"?ULV[l-1]:LVN[l-1]}<small>${Math.min(n,NEED)}/${NEED} · +${10*l}</small></button>`;
+    return`<button class="lv ${l==lvl?"on":""} ${n>=NEED?"ok":""}" data-l="${l}">${n>=NEED?"✅":"⭐"} ${tab=="units"?ULV[l-1]:LVN[l-1]}<small>${Math.min(n,NEED)} / ${NEED} · по ${10*l} очок</small></button>`;
   }).join(""):""
 }
 
@@ -270,14 +263,14 @@ function next(){
   $("hint").style.display=hasLv()?"none":"";
   if(hasLv()){
     cur=G[tab=="units"?"u":cat](lvl);cur.pts=10*lvl;
-    $("say").textContent=tab=="units"?"Тимко: перепиши в зошит, обчисли і запиши число.":cat=="eq"?"Тимко: знайди x. Розв’яжи в зошиті, запиши сюди.":cat=="combo"?"Тимко: спочатку порядок дій! Рахуй уважно.":"Тимко: перепиши приклад у зошит у стовпчик і порахуй!";
+    $("say").textContent=tab=="units"?"Тимко: перепиши в зошит, обчисли і запиши відповідь лише числом.":cat=="eq"?"Тимко: знайди x. Розв’яжи в зошиті, запиши x.":cat=="combo"?"Тимко: спочатку порядок дій! Розв’яжи в зошиті.":"Тимко: перепиши приклад у зошит у стовпчик і порахуй!";
     $("board").innerHTML=cur.h;
   } else {
     const p=pool(),dn_=st.d[dkey()]||[],free=p.map((_,i)=>i).filter(i=>!dn_.includes(i));
     const i=free.length?free[0]:R(0,p.length-1);cur={a:p[i][2],sol:p[i][3],i,pts:free.length?(tab=="tasks"?30:20):0};
-    $("say").textContent=tab=="tasks"?"Тимко: запиши умову й розв’язок у зошит, а тут напиши відповідь.":"Тимко: подумай добре! Це завдання з секретом.";
+    $("say").textContent=tab=="tasks"?"Тимко: запиши в зошит коротку умову й розв’язок, а тут — відповідь.":"Тимко: подумай добре! Це хитре завдання.";
     $("board").innerHTML=`<div class="tx">${p[i][1]}</div>`;
-    if(!free.length)toast("🏆 Усе в цій темі пройдено! Тренуйся ще без очок.");
+    if(!free.length)toast("🏆 Усе в цій темі пройдено! Тренуйся ще — без очок.");
   }
   $("sol").innerHTML="<b>Розв’язок:</b> "+(cur.sol||"");
 }
